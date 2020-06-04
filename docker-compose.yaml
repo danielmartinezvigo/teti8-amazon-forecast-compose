@@ -1,0 +1,18 @@
+version: "3"
+services:
+  # client
+  client:
+    image: danielmartinezvigo/teti8-amazon-forecast-client
+    restart: always
+    env_file:
+      - ./client.env
+    ports:
+      - 8888:80
+  # backend
+  backend:
+    image: danielmartinezvigo/teti8-amazon-forecast-backend
+    restart: always
+    volumes:
+      - ./config.json:/usr/src/app/config.json
+    ports:
+      - 4000:4000
